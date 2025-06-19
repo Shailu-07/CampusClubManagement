@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<title> </title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="Edulearn Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
+	/>
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	 
+	<!--// Meta tag Keywords -->
+
+	<!-- Custom-Files -->
+	<!-- Bootstrap-Core-Css -->
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<!-- Testimonials-Css -->
+	<link href="/static/css/mislider.css" rel="stylesheet" type="text/css" />
+	<link href="/static/css/mislider-custom.css" rel="stylesheet" type="text/css" />
+	<!-- Style-Css -->
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+	<!-- Font-Awesome-Icons-Css -->
+	<link rel="stylesheet" href="/static/css/fontawesome-all.css">
+	<!-- //Custom-Files -->
+
+	<!-- Web-Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+	 rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+	<!-- //Web-Fonts -->
+
+</head>
+
+<body>{% include "defaulttop.html" %}{% csrf_token %}
+	<!-- header -->
+	 
+	<!-- what we do -->
+	
+	<div class="video-choose-agile py-5" id="login">
+		<div class="container py-xl-5 py-lg-3">
+			<h3 class="title text-capitalize font-weight-light text-white text-center mb-5 black">
+				<span class="font-weight-bold black">Login</span>
+			</h3>
+			<div class="row agileits-w3layouts-grid mt-12 shadowdiv">
+				<div class="row"><div class="col-md-6">
+				<form name="frm" method="post" action="/login/"><br/><br/><br/>
+					{% csrf_token %}<table class="tblform">
+					<tr><td>Userid</td>
+					<td><input type="text" name="userid" class="form-control" required/> </td>
+					</tr>
+					<tr><td>Password</td>
+						<td><input type="password" name="pass" class="form-control" required/> </td>
+						</tr>
+						<tr><td colspan="2"><input type="submit" value="Submit" class="btn btn-primary"/> </td></tr>
+				 </table></form><a href="/forgot/">Forgot Password?</a></div><div class="col-md-6">
+					<img src="/static/images/login.gif" width="80%"/>
+				 </div></div>
+				</div>
+			 
+		</div>
+	</div>
+	<!-- //what we do -->
+ 
+
+	<!-- footer -->
+	<footer>
+		 
+		<div class="copyright-agiles py-3">
+			<div class="container">
+				<div class="row">
+					<p class="col-lg-8 copy-right-grids text-white text-lg-left text-center mt-lg-1">© 2023 Students Clubs Activity Tracking System. All Rights Reserved  
+						 
+					</p>
+					  
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- //footer -->
+
+
+	<!-- Js files -->
+	<!-- JavaScript -->
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<!-- Default-JavaScript-File -->
+	<script src="js/bootstrap.js"></script>
+	<!-- Necessary-JavaScript-File-For-Bootstrap -->
+
+	<!-- banner slider -->
+	<script src="js/slider.js"></script>
+	<!-- //banner slider -->
+
+	<!-- testimonial-plugin -->
+	<script src="js/mislider.js"></script>
+	<script>
+		jQuery(function ($) {
+			var slider = $('.mis-stage').miSlider({
+				//  The height of the stage in px. Options: false or positive integer. false = height is calculated using maximum slide heights. Default: false
+				stageHeight: 320,
+				//  Number of slides visible at one time. Options: false or positive integer. false = Fit as many as possible.  Default: 1
+				slidesOnStage: false,
+				//  The location of the current slide on the stage. Options: 'left', 'right', 'center'. Defualt: 'left'
+				slidePosition: 'center',
+				//  The slide to start on. Options: 'beg', 'mid', 'end' or slide number starting at 1 - '1','2','3', etc. Defualt: 'beg'
+				slideStart: 'mid',
+				//  The relative percentage scaling factor of the current slide - other slides are scaled down. Options: positive number 100 or higher. 100 = No scaling. Defualt: 100
+				slideScaling: 150,
+				//  The vertical offset of the slide center as a percentage of slide height. Options:  positive or negative number. Neg value = up. Pos value = down. 0 = No offset. Default: 0
+				offsetV: -5,
+				//  Center slide contents vertically - Boolean. Default: false
+				centerV: true,
+				//  Opacity of the prev and next button navigation when not transitioning. Options: Number between 0 and 1. 0 (transparent) - 1 (opaque). Default: .5
+				navButtonsOpacity: 1,
+			});
+		});
+	</script>
+	<!-- //testimonial-plugin -->
+
+	<!-- numscroller-js-file -->
+	<script src="js/numscroller-1.0.js"></script>
+	<!-- //numscroller-js-file -->
+
+	<!-- smooth scrolling -->
+	<script src="js/SmoothScroll.min.js"></script>
+	<!-- //smooth scrolling -->
+
+	<!-- move-top -->
+	<script src="js/move-top.js"></script>
+	<!-- easing -->
+	<script src="js/easing.js"></script>
+	<!--  necessary snippets for few javascript files -->
+	<script src="js/edulearn.js"></script>
+
+	<!-- //Js files -->
+
+</body>
+
+</html>

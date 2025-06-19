@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Cotton Leaf Disease Detection</title>
+	
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	 <script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+ <script>
+	addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+	}, false);
+
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+ 
+
+	<!--// Meta tag Keywords -->
+
+	<!-- banner slider css file -->
+	<link href="/static/css/JiSlider.css" rel="stylesheet">
+	<!-- //banner slider css file -->
+
+	<!-- gallery-Swipe-box -->
+	<link rel="stylesheet" href="/static/css/swipebox.css">
+	<!-- //gallery-Swipe-box -->
+	
+	<!-- testimonials css -->
+	<link rel="stylesheet" href="/static/css/flexslider.css" type="text/css" media="screen" property="" /><!-- flexslider css -->
+	<!-- //testimonials css -->
+
+	<!-- css files -->
+	<link rel="stylesheet" href="/static/css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" /> <!-- Style-CSS --> 
+	<link rel="stylesheet" href="/static/css/fontawesome-all.css"> <!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+
+	<!-- web-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+	<!-- //web-fonts -->
+
+	<script language="Javascript" type="text/javascript">
+ 
+
+		function createRequestObject() {
+			var tmpXmlHttpObject;
+			if (window.XMLHttpRequest) {
+					tmpXmlHttpObject = new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				tmpXmlHttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		
+			return tmpXmlHttpObject;
+		}
+		
+		
+		var http = createRequestObject();
+		
+		function makeGetRequest(st) {
+		   // st=document.frm.state.value;
+		   
+			http.open('get', '/Cities?state=' + st);
+			http.onreadystatechange = processResponse;
+			http.send(null);
+		}
+		
+		function processResponse() {
+			if(http.readyState == 4){
+				var response = http.responseText;
+				document.getElementById('cities').innerHTML = response;
+			}
+		}
+		 
+		</script>
+</head>
+
+<body>
+	{% include "top.html" %}
+	 
+
+<!-- Welcome section -->
+<section class="welcome py-5 my-lg-5" id="login">
+<div class="container"><div class="row"><div class="col-md-12">
+<h2>Inbox</h2>
+<table class="table">
+    <tr>
+        <th>From</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>Reply from club admin</th>
+        <th>Attachment</th>
+        <th>Attachment(Replied)</th>
+    </tr>
+    {% for msg in messages %}
+    <tr>
+        <td>{{ msg.1 }}</td>
+        <td>{{ msg.3 }}</td>
+        <td>{{ msg.4 }}</td>
+        <td>{{ msg.5 }}</td>
+        <td>
+            {% if msg.7 != 'NA' %}
+            <a href="../static/Communication/{{ msg.7 }}" target="_blank">View</a>
+            {% else %}
+            No Attachment
+            {% endif %}
+        </td>
+		<td>
+            {% if msg.8 != 'NA' %}
+            <a href="../static/Communication/{{ msg.8 }}" target="_blank">View</a>
+            {% else %}
+            No Attachment
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<script>
+    function replyMessage(commId) {
+        var replyText = prompt("Enter your reply:");
+        if (replyText) {
+            $.post("{% url 'reply_message' %}", {
+                commId: commId,
+                reply: replyText,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            }, function(response) {
+                alert(response.message);
+                location.reload();
+            });
+        }
+    }
+</script>
+ 

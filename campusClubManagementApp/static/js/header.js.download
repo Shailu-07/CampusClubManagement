@@ -1,0 +1,41 @@
+
+		var code = ` <section>
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12 d-flex justify-content-center">
+                <a href="">
+                    <img src="images/logo1.png" alt=""/>
+                </a>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 col-12 d-flex justify-content-center">
+                <div class="maintext right-section">
+                    <div class="vidarbhatext" style="text-align:center;">
+                        <p style="margin-bottom: 0px;" class="name-1 text-dark pt-3 fw-bold">Vidarbha Youth Welfare
+                            Society's</p>
+                        <h3 class="name-1 fw-bold">Prof. Ram Meghe Institute of Technology and Research<br/> Badnera
+                            -
+                            Amravati 444701(MS)
+                        </h3>
+                        <p style="margin-bottom: 0px;" class="name-1 text-dark fw-bold">(Formerly College of
+                            Engineering, Badnera) - Estd. 1983</p>
+                        <p style="margin-bottom: 0px ; color:red;" class="name-1 fs-4">
+                            <strong> An Autonomous Institute</strong>
+                        </p>
+                        <p class="name-1 text-dark fw-bold">(Affiliated to Sant Gadge Baba Amravati University)</p>
+                      
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12   justify-content-center NAAC_logo_main" >
+                <img src="images/logo2.png" alt="" class="NAAC_logo"/>
+                <p style="color:red;text-align: center;"><strong>CGPA 3.43</strong></p>
+                
+            </div>
+           
+        </div>
+
+    </div>
+
+</section>`;
+		document.getElementById("myId-head").innerHTML = code;

@@ -1,0 +1,76 @@
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Calendar</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 10px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        td {
+            height: 100px;
+        }
+        .event {
+            background-color: #ffdddd;
+            border: 2px solid #ff6b6b;
+        }
+        .no-day {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>{% include "defaulttop.html" %}<div class="container"><center> 
+    <h1>Event Calendar: {{ month }} {{ year }}</h1>
+    <a href="/event_calendar?dt={{ prev_month }}" class="btn btn-primary">Previous Month</a>
+    <a href="/event_calendar?dt={{ next_month }}" class="btn btn-primary">Next Month</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in month_days %}
+            <tr>
+                {% for day in week %}
+                    {% if day == 0 %}
+                        <td class="no-day"></td>  <!-- Empty cell for non-days -->
+                    {% elif day in event_dates %}
+                    <td class="event">
+                        {% if day in event_dates %}
+                            {% with event=event_dates|lookup:day %}
+                            <a href="#">{{ day }}<br>{{event.name}}</a>
+                            
+                            {% endwith %}
+                        {% else %}
+                            {{ day }}
+                        {% endif %}
+                    </td>
+                    {% else %}
+                        <td>{{ day }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table></div>
+</body>
+</html>

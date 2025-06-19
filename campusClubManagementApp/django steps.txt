@@ -1,0 +1,39 @@
+
+open cmd prompt
+g:
+mkdir django-setup
+cd django-setup
+pip install virtualenv
+virtualenv campusClubManagement
+cd campusClubManagement
+cd Scripts
+activate
+pip install django
+///django-admin startproject campusClubManagementApp----------------No need to execute this command only copy your project folder inside Scripts directory
+
+pip install pymysql
+pip install mysqlclient
+pip install cryptography
+pip install mysql-connector-python
+pip install tika
+pip install nltk
+pip install tinyec
+pip install pycryptodome
+
+cd campusClubManagementApp
+python manage.py runserver
+
+steps to execute configured project
+open cmd prompt
+g:
+cd django-setup
+cd campusClubManagement
+cd Scripts
+activate
+cd campusClubManagementApp
+python manage.py runserver
+
+
+Aiven Cloud Credentials
+
+Email: students_clubs@outlook.com pass:SProject23

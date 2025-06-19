@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Cotton Leaf Disease Detection</title>
+	
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	 <script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+ <script>
+	addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+	}, false);
+
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+ 
+
+	<!--// Meta tag Keywords -->
+
+	<!-- banner slider css file -->
+	<link href="/static/css/JiSlider.css" rel="stylesheet">
+	<!-- //banner slider css file -->
+
+	<!-- gallery-Swipe-box -->
+	<link rel="stylesheet" href="/static/css/swipebox.css">
+	<!-- //gallery-Swipe-box -->
+	
+	<!-- testimonials css -->
+	<link rel="stylesheet" href="/static/css/flexslider.css" type="text/css" media="screen" property="" /><!-- flexslider css -->
+	<!-- //testimonials css -->
+
+	<!-- css files -->
+	<link rel="stylesheet" href="/static/css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" /> <!-- Style-CSS --> 
+	<link rel="stylesheet" href="/static/css/fontawesome-all.css"> <!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+
+	<!-- web-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+	<!-- //web-fonts -->
+
+	<script language="Javascript" type="text/javascript">
+ 
+
+		function createRequestObject() {
+			var tmpXmlHttpObject;
+			if (window.XMLHttpRequest) {
+					tmpXmlHttpObject = new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				tmpXmlHttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		
+			return tmpXmlHttpObject;
+		}
+		
+		
+		var http = createRequestObject();
+		
+		function makeGetRequest(st) {
+		   // st=document.frm.state.value;
+		   
+			http.open('get', '/Cities?state=' + st);
+			http.onreadystatechange = processResponse;
+			http.send(null);
+		}
+		
+		function processResponse() {
+			if(http.readyState == 4){
+				var response = http.responseText;
+				document.getElementById('cities').innerHTML = response;
+			}
+		}
+		 
+		</script>
+</head>
+
+<body>
+	{% include "top.html" %}
+	 
+
+<!-- Welcome section -->
+<section class="welcome py-5 my-lg-5" id="login">
+<div class="container"><div class="row"><div class="col-md-12">
+    <h3 class="heading text-center text-uppercase">{{request.session.user.utype}} Home</h3>
+    Logged in as {{request.session.user.userid}} ({{request.session.user.utype}})
+     
+    
+	<div class="row">
+         <div class="col-md-12 report" ><div class="row"> <div class="col-md-12"> 
+<h2>Compose Message</h2>
+<form id="composeForm" method="post" action="/reply_message/" enctype="multipart/form-data">
+    {% csrf_token %}
+     
+    <input type="text" name="cid" value="{{cid}}" required class="form-control">
+    
+    <label>Message:</label>
+    <textarea name="msg" required class="form-control"></textarea>
+
+    <label>Attach File:</label>
+    <input type="file" name="attach1" class="form-control">
+
+    <br>
+    <input type="submit" class="btn btn-primary">Send</input>
+</form>
+</div></div></div></div></div></div></div></section></body></html>

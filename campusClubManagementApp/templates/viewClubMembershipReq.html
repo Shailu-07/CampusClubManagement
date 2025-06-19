@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+	
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	 
+ 
+	<!--// Meta tag Keywords -->
+
+	<!-- banner slider css file -->
+	<link href="/static/css/JiSlider.css" rel="stylesheet">
+	<!-- //banner slider css file -->
+
+	<!-- gallery-Swipe-box -->
+	<link rel="stylesheet" href="/static/css/swipebox.css">
+	<!-- //gallery-Swipe-box -->
+	
+	<!-- testimonials css -->
+	<link rel="stylesheet" href="/static/css/flexslider.css" type="text/css" media="screen" property="" /><!-- flexslider css -->
+	<!-- //testimonials css -->
+
+	<!-- css files -->
+	<link rel="stylesheet" href="/static/css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" /> <!-- Style-CSS --> 
+	<link rel="stylesheet" href="/static/css/fontawesome-all.css"> <!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+
+	<!-- web-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+	<!-- //web-fonts -->
+	
+</head>
+
+<body> 
+	{% include "top.html" %}
+	<section class="welcome py-5 my-lg-5" id="login">
+		<div class="container"><div class="row"><div class="col-md-12">
+			<h3 class="heading text-center text-uppercase">Staff Home</h3>
+			Logged in as {{request.session.user.userid}} ({{request.session.user.utype}})
+			<h2>Pending Membership Requests</h2>
+			
+			<div class="row">
+				<div class="col-md-12" >
+		<table id="myTable" class="table  table-striped table-bordered">
+			<thead><tr>
+				<th>Club Name</th>
+				<th>Fees</th>
+				<th>Date</th>
+				<th>Student Name</th> 
+				<th>Email</th>
+				<th>Mobile</th> 
+				<th>Gender</th> 
+				<th>Branch</th>
+				<th>Semester</th><th></th><th> </th>
+				</tr>
+			</thead>
+        {% for rec in list %}
+		
+			
+			<tbody>
+	
+				<tr> <td>{{rec.6}} </td>
+					<td>   {{rec.8}} </td>
+					 
+				   <td> {{rec.9}} </td> 
+					<td> {{rec.0}} </td>  
+					<td> {{rec.1}} </td> 
+					<td> {{rec.2}} </td>  
+					<td> {{rec.3}} </td> 
+					<td> {{rec.4}} </td> 
+					<td> {{rec.5}} </td> 
+					  <td><a href="../static/Clubs_Membership/{{rec.7}}" target="_blank" class="btn btn-submit1">Receipt</a> </td>
+					  <td>
+						<form method="post" action="/approveMembership/">{% csrf_token %}
+							<input type="hidden" name="reqid" value="{{rec.11}}"/>
+							<input type="hidden" name="email" value="{{rec.1}}"/>
+							<input type="hidden" name="name" value="{{rec.0}}"/>
+							<input type="hidden" name="clubname" value="{{rec.6}}"/>
+							<input type="submit" class="btn btn-submit1" value="Approve"/>
+						</form>
+ 					  <td>
+						<form method="post" action="/rejectMembership/">{% csrf_token %}
+							<input type="hidden" name="reqid" value="{{rec.11}}"/>
+							<input type="hidden" name="email" value="{{rec.1}}"/>
+							<input type="hidden" name="name" value="{{rec.0}}"/>
+							<input type="hidden" name="clubname" value="{{rec.6}}"/>
+							<input type="submit" class="btn btn-submit1" value="Reject"/>
+						</form>
+ 
+						
+					</tr>
+					{% empty %}
+					<tr><td colspan="13" class="text-center">No Record Found!!</td> </tr>
+				</tbody>
+		</table></div>
+		{% endfor %}
+		 </div></div></div></div></section>
+</body>
+ 
+</html>

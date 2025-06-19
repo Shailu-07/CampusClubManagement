@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Club Activity Tracking System</title>
+	
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	 <script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+ 
+	<!--// Meta tag Keywords -->
+
+	<!-- banner slider css file -->
+	<link href="/static/css/JiSlider.css" rel="stylesheet">
+	<!-- //banner slider css file -->
+
+	<!-- gallery-Swipe-box -->
+	<link rel="stylesheet" href="/static/css/swipebox.css">
+	<!-- //gallery-Swipe-box -->
+	
+	<!-- testimonials css -->
+	<link rel="stylesheet" href="/static/css/flexslider.css" type="text/css" media="screen" property="" /><!-- flexslider css -->
+	<!-- //testimonials css -->
+
+	<!-- css files -->
+	<link rel="stylesheet" href="/static/css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" /> <!-- Style-CSS --> 
+	<link rel="stylesheet" href="/static/css/fontawesome-all.css"> <!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+
+	<!-- web-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+	<!-- //web-fonts -->
+	
+</head>
+
+<body>
+	{% include "top.html" %}
+	 
+
+<!-- Welcome section -->
+<section class="welcome py-5 my-lg-5" id="login">
+<div class="container"><div class="row"><div class="col-md-12">
+    <h3 class="heading text-center text-uppercase">Student Home</h3>
+    Logged in as {{request.session.user.userid}} ({{request.session.user.utype}})
+	<h2>Available Clubs</h2>
+    
+	<div class="row">
+        {% for rec in list %}<div class="col-md-12 report" > 
+		<table id="myTable" class="table  table-striped">
+			<tbody>
+		<tr> 
+              <td colspan="7"><h5> {{rec.1}} </h5></td></tr>
+			  <tr><td colspan="2"  rowspan="7">
+				<div style="background-image: url('../static/Clubs/{{rec.2}}');text-align: center; min-height: 200px;height: 200px;width: 200px;display: flex;justify-content: center;background-repeat: no-repeat;background-size: cover;background-position: center center;"></div>
+				 
+			</td></tr>
+        <tr> 
+			<th> Details   </th><td colspan="4">   {{rec.3}} </td>
+			</tr><tr> 
+            <th>Club Admin</th><td colspan="4"> {{rec.5}} </td></tr><tr> 
+            <th>Date</th><td colspan="4"> {{rec.6}} </td></tr><tr> 
+            <th>Approved By</th><td colspan="4"> {{rec.8}} </td></tr><tr> 
+				<th>Fees</th><td colspan="4"> {{rec.9}} </td></tr><tr>
+
+			 <tr><td colspan="2"><a href="/viewEvents?club_name={{rec.1}}&sts={{rec.10}}" class="btn btn-submit1">view Events</a> </td>
+			 {% if rec.10 == 'not subscribed' %}
+			 	<td colspan="2"><a href="/send_membership_req?clubname={{rec.1}}&fees={{rec.9}}" class="btn btn-submit1">Send Membership Requests</a> </td>
+				 
+			</tr>
+			
+			{% else %}
+			<td ><h2>{{rec.10}}</h2></td>
+			<td><a href="/pending_membership_req1?clubname={{rec.1}}" class="btn btn-submit1">Club Members</a> </td>
+			<td ><a href="/compose_message?expuid={{rec.1}}" class="btn btn-submit1">Communicate</a> </td>
+				 <td ><a href="/inbox1?expertUserid={{rec.1}}" class="btn btn-submit1">Inbox</a> </td>
+				 <td ><a href="/sent_items?expertUserid={{rec.1}}" class="btn btn-submit1">Sent Items</a> </td>
+				  
+			{% endif %}
+		</tbody>
+		</table></div>
+		{% empty %}
+		<div class="col-md-12 report text-center"><h5>No Record Found!!</h5></div>
+		{% endfor %}
+		<!--
+		<div class="col-md-12"><br/><br/>
+			<nav aria-label="...">
+				<ul class="pagination">
+				   
+				  <li class="page-item"><a class="page-link" href="#">1</a></li>
+				  <li class="page-item active">
+					<a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+				  </li>
+				  <li class="page-item"><a class="page-link" href="#">3</a></li>
+				  
+				</ul>
+			  </nav>
+		</div>-->
+		  
+</div>
+	</div>
+</div>
+</div>
+	</section>
+    
+</body>
+ 
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Club Activity Tracking System</title>
+	
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	 <script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+ <script>
+	addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+	}, false);
+
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+
+<script language="Javascript" type="text/javascript">
+
+
+	function createRequestObject() {
+		var tmpXmlHttpObject;
+		if (window.XMLHttpRequest) {
+				tmpXmlHttpObject = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			tmpXmlHttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	
+		return tmpXmlHttpObject;
+	}
+	
+	
+	var http = createRequestObject();
+	
+	function makeGetRequest1(st) {
+	   // st=document.frm.state.value;
+	   
+		http.open('get', '/UseridVali?userid=' + st);
+		http.onreadystatechange = processResponse1;
+		http.send(null);
+	}
+	
+	function processResponse1() {
+		if(http.readyState == 4){
+			var response = http.responseText;
+			if(response.includes("Userid is Not available, Please try another!!"))
+			{
+				//alert("yes")
+				document.getElementById('userid').value=""
+			}
+			document.getElementById('useridvali').innerHTML = response;
+			
+		}
+	}
+	 
+	</script>
+<script language="Javascript" type="text/javascript">
+
+function makeGetRequest2() {
+    document.frm.userid.value="";
+    alert("hi")
+}
+
+function createRequestObject() {
+	var tmpXmlHttpObject;
+	if (window.XMLHttpRequest) {
+			tmpXmlHttpObject = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		tmpXmlHttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	return tmpXmlHttpObject;
+}
+
+
+var http = createRequestObject();
+
+function makeGetRequest(st) {
+   // st=document.frm.state.value;
+   
+	http.open('get', '/Cities?state=' + st);
+	http.onreadystatechange = processResponse;
+	http.send(null);
+}
+
+function processResponse() {
+	if(http.readyState == 4){
+		var response = http.responseText;
+		document.getElementById('cities').innerHTML = response;
+	}
+}
+ 
+</script>
+	<!--// Meta tag Keywords -->
+
+	<!-- banner slider css file -->
+	<link href="/static/css/JiSlider.css" rel="stylesheet">
+	<!-- //banner slider css file -->
+
+	<!-- gallery-Swipe-box -->
+	<link rel="stylesheet" href="/static/css/swipebox.css">
+	<!-- //gallery-Swipe-box -->
+	
+	<!-- testimonials css -->
+	<link rel="stylesheet" href="/static/css/flexslider.css" type="text/css" media="screen" property="" /><!-- flexslider css -->
+	<!-- //testimonials css -->
+
+	<!-- css files -->
+	<link rel="stylesheet" href="/static/css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" /> <!-- Style-CSS --> 
+	<link rel="stylesheet" href="/static/css/fontawesome-all.css"> <!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+
+	<!-- web-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+	<!-- //web-fonts -->
+	
+</head>
+
+<body>
+	{% include "top.html" %}
+	 
+
+<!-- Welcome section -->
+<section class="welcome py-5 my-lg-5" id="login">
+<div class="container"><div class="row"><div class="col-md-12">
+    <h3 class="heading text-center text-uppercase">Admin Home</h3>
+    Logged in as {{request.session.user.userid}} ({{request.session.user.utype}})
+    <h2>Staff Registration</h2>
+    
+	<div class="row">
+         <div class="col-md-12 report" ><div class="row"> <div class="col-md-6">
+			<form name="frm" method="post" action="/registerStaff/" enctype="multipart/form-data"><table class="tblform">
+				{% csrf_token %}<tr><td>Userid</td>
+				<td><input type="text" id="userid" name="userid" class="form-control" onchange="makeGetRequest1(this.value)" required/>
+				<div id="useridvali" ></div>
+				</td>
+				</tr>
+				<tr><td>User Name</td>
+				<td><input type="text" name="usernm" class="form-control" required></td>
+				</tr>
+				<tr><td>Password</td>
+				<td><input type="password" name="pswd" class="form-control" required>
+				 <input type="hidden" name="usertype" value="user"/>
+				</td>
+				</tr>
+			 
+				   <tr><td>Mobile Number</td>
+					   <td><input type="text" name="mobileno"  pattern="^\d{10}$" class="form-control" required></td></tr>
+				   <tr>
+					<td>Email Address</td>       
+				   <td><input type="text" name="emailid" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  class="form-control" required></td>
+				   </tr>
+				   <tr>
+					<td>Branch
+					</td>
+					<td> 
+					 
+					<select required name="branch" class="form-control"> 
+						<option value="<--select-->"><--select--></option>
+					   {% for rec in lstbr %}
+					   {% for val in rec %}
+					   <option value={{val}}> {{val}}</option>
+					   {% endfor %}
+				   {% endfor %}
+				   </select>
+					</td>
+					</tr>
+					<tr>
+						<td>User Type
+						</td>
+						<td> 
+						 
+						<select required name="utype" class="form-control"> 
+							<option value="<--select-->"><--select--></option> 
+						   <option value="staff"> Staff</option> 
+						   <option value="principal"> Principal</option>
+						    
+					   </select>
+						</td>
+						</tr>
+												  <tr>
+												 <td>State
+												 </td>
+												 <td> 
+												  
+												 <select required name="state" class="form-control" onchange="makeGetRequest(this.value)">
+													{% for rec in list %}
+													{% for val in rec %}
+													<option value={{val}}> {{val}}</option>
+													{% endfor %}
+												{% endfor %}
+												</select>
+												 </td>
+												 </tr>
+												   <tr>
+												 <td>City
+												 </td>
+												 <td> 
+												<div id="cities"></div>
+												 </td>
+												 </tr>
+				   <tr>
+			<td>Gender</td>
+			<td>
+			  <input type="hidden" name="userstatus" value="active"/>
+			<input type="radio" name="gender" value="Male"   checked="checked" required >Male 
+			<input type="radio" name="gender" value="Female"  required>Female 
+			</td>
+			</tr>
+					
+					 <tr><td> Address</td>
+				<td><textarea  name="addr" class="form-control" required></textarea></td>
+				</tr>
+				<tr><td>Pincode</td>
+				<td><input type="text" name="pincode" class="form-control" required></td>
+				</tr>
+				  
+				   <tr>
+					   <td>Date Of Birth</td>
+					   <td><input type="date" name="dob" class="form-control"></td>
+				   </tr>
+				   <tr><td>Photo</td>
+				   <td>
+				   <input type="file" name="file" class="form-control"/>
+				   </td>
+				<tr>
+				<td><input type="submit" value="Submit" class="btn btn-primary" ></td>
+				</tr>
+				</table></form>
+		 </div>
+		 <div class="col-md-6">
+			<img src="../static/images/Registration.png" width="100%"/>
+		 </div></div>
+		</div>
+		<!--
+		<div class="col-md-12"><br/><br/>
+			<nav aria-label="...">
+				<ul class="pagination">
+				   
+				  <li class="page-item"><a class="page-link" href="#">1</a></li>
+				  <li class="page-item active">
+					<a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+				  </li>
+				  <li class="page-item"><a class="page-link" href="#">3</a></li>
+				  
+				</ul>
+			  </nav>
+		</div>-->
+		  
+</div>
+	</div>
+</div>
+</div>
+	</section>
+    
+</body>
+<script>
+	$(document).ready(function(){
+		$('#myTable').dataTable();
+	});
+	</script>
+</html>

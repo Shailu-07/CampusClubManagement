@@ -1,0 +1,131 @@
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<title> </title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="Edulearn Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
+	/>
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!--// Meta tag Keywords -->
+
+	<!-- Custom-Files -->
+	<!-- Bootstrap-Core-Css -->
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<!-- Style-Css -->
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+	<!-- Font-Awesome-Icons-Css -->
+	<link rel="stylesheet" href="/static/css/fontawesome-all.css">
+	<!-- //Custom-Files -->
+
+	<!-- Web-Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+	 rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+	<!-- //Web-Fonts -->
+
+</head>
+
+<body>
+	{% if 'userid' in request.session %}
+	<!-- header -->
+	<header>
+		<!-- top header -->
+		<div class="top-head-w3ls py-2 bg-dark">
+			<div class="container">
+				<div class="row">
+					<h1 class="text-capitalize text-white col-7">
+						<i class="fas fa-book text-dark bg-white p-2 rounded-circle mr-3"></i>welcome to Clubs Activity Tracking and analytics system</h1>
+					<!-- social icons -->
+					<div class="social-icons text-right col-5">
+						 
+					</div>
+					<!-- //social icons -->
+				</div>
+			</div>
+		</div>
+		<!-- //top header -->
+		<!-- middle header -->
+		<div class="middle-w3ls-nav py-2">
+			<div class="container">
+				<div class="row">
+					<a class="logo font-italic font-weight-bold col-lg-12 text-lg-left text-center" href="/home">Campus Club Management System</a>
+					 
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //middle header -->
+	</header>
+	<!-- //header -->
+
+	<!-- banner -->
+	<div class="banner-agile-2">
+		<!-- navigation -->
+		<div class="navigation-w3ls">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-nav">
+				<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+				 aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+					<ul class="navbar-nav justify-content-center">
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/{{request.session.user.utype}}/">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						{% if request.session.user.utype == 'admin' %}
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/viewstudents">Students</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/regStaff">Create Staff Login</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/viewstaff">Staff Details</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/regClubs">Register Clubs</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/viewclubs">view Clubs</a>
+						</li>
+						{% elif request.session.user.utype == 'staff' %}
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/staff">view Clubs</a>
+						</li>
+						 
+						{% elif request.session.user.utype == 'principal' %}
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/viewclubs_principal_pending">pending Clubs</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/viewclubs_approved">Approved Clubs</a>
+						</li>
+						{% elif request.session.user.utype == 'student' %}
+						{% endif %}
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/logout">logout</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- //navigation -->
+	</div>
+	{% else %}
+	<meta http-equiv="REFRESH" content="0;url=/home/">
+	{% endif %}
