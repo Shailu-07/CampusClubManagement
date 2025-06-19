@@ -1,0 +1,16 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+
+# Ignore database files
+*.sqlite3
+
+# Ignore virtual environments
+campusClubManagement/
+venv/
+env/
+
+# Ignore system/IDE files
+.DS_Store
+.vscode/
+Thumbs.db
