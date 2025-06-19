@@ -1,1 +1,2 @@
-web: gunicorn campusClubManagementApp.wsgi
+web: gunicorn campusClubManagementApp.campusClubManagementApp.wsgi
+
